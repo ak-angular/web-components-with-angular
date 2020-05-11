@@ -23,13 +23,16 @@ export class AppModule {
 
   ngDoBootstrap() {
   	
-  	// Note: my custom component are "MyCustomComponentExample1" and "MyCustomComponentExample2"
-  	// you can have your own
-  	
+  	// Convert `RegisterFormComponent` to a custom element.
     const registerFormComponent = createCustomElement(RegisterFormComponent, {injector: this.injector});
+    
+    // Register the custom element with the browser.
     customElements.define('register-form', registerFormComponent);
     
+  	// Convert `LoginFormComponent` to a custom element.
     const loginFormComponent = createCustomElement(LoginFormComponent, {injector: this.injector});
+    
+    // Register the custom element with the browser.
     customElements.define('login-form', loginFormComponent);
   }
 }
