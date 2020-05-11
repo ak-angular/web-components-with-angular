@@ -8,6 +8,11 @@ This step will enable your angular setup to make angular components
 ng add @angular/Elements
 ```
 
+And then we would require to import the module to `app.module.ts`. Lets do it like this:
+```js
+import { createCustomElement } from '@angular/elements';
+```
+
 ## App Module - Remove App Based Config
 Since plan is to build web components, not to have an angular app, lets remove the app related configurations in entry file.
 
