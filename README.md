@@ -67,7 +67,6 @@ In the `package.json`, lets add nother command under `scripts`:
 Checkout [/dist/web-components/index.html](/dist/web-components/index.html) directory for output
 
 
-
 ---
 ---
 
