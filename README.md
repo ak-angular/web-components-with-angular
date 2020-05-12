@@ -25,6 +25,14 @@ Since plan is to build web components, not to have an angular app, lets remove t
 * Also, we do not need to bootstrap the app, so remove below line under `@ngModule`:
 	`bootstrap: [AppComponent]`
 
+## Remove app.component files
+Since we do not need the app component files (and we deleted the refernce of it in app.modile.ts), lets remove them from the project directory. So delete below files:
+
+* app.component.html
+* app.component.scss
+* app.component.ts
+* app.component.specs.ts
+
 
 ## Export Web Components for outer world
 Time to make our custom web components and expose them for outer world. So, in `app.module.ts`, lets change `AppModule` class as below:
@@ -46,6 +54,36 @@ export class AppModule {
   }
  }
 ```
+
+a better way to do it would be, to have all the element reference in an object and loop it to do repeatative work:
+
+```js
+export class AppModule { 
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+
+    // list of components and element names of each
+    const elements = {
+      'register-form': RegisterFormComponent,
+      'login-form': LoginFormComponent
+    };
+
+    // loop to create custom web components
+    for (let name in elements) {
+      const component = elements[name];
+
+      // Convert component to a custom element.
+      const el = createCustomElement(component, {injector: this.injector});
+
+      // Register the custom element with the browser
+      customElements.define(name, el);
+    }
+    
+  }
+}
+```
+now if you add more web components to project, you just need to add it into the object, and rest of the code will do the work.
 
 
 ## Build Process Changes

@@ -22,17 +22,23 @@ export class AppModule {
   constructor(private injector: Injector) {}
 
   ngDoBootstrap() {
-  	
-  	// Convert `RegisterFormComponent` to a custom element.
-    const registerFormComponent = createCustomElement(RegisterFormComponent, {injector: this.injector});
+
+    // list of components and element names of each
+    const elements = {
+      'register-form': RegisterFormComponent,
+      'login-form': LoginFormComponent
+    };
+
+    // loop to create custom web components
+    for (let name in elements) {
+      const component = elements[name];
+
+      // Convert component to a custom element.
+      const el = createCustomElement(component, {injector: this.injector});
+
+      // Register the custom element with the browser
+      customElements.define(name, el);
+    }
     
-    // Register the custom element with the browser.
-    customElements.define('register-form', registerFormComponent);
-    
-  	// Convert `LoginFormComponent` to a custom element.
-    const loginFormComponent = createCustomElement(LoginFormComponent, {injector: this.injector});
-    
-    // Register the custom element with the browser.
-    customElements.define('login-form', loginFormComponent);
   }
 }
