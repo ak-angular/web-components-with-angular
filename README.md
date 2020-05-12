@@ -64,10 +64,17 @@ In the `package.json`, lets add nother command under `scripts`:
 **NOTE:** We can also, merge all these files into one, and for that, we need to write another script.
 
 ## Output
-Checkout [/dist/web-components](/dist/web-components) directory for output
+Checkout [/dist/web-components/index.html](/dist/web-components/index.html) directory for output
+
+.
+
+.
+
+.
 
 
-================
+---
+---
 
 
 # Angular Base Build Info
