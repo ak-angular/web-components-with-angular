@@ -99,7 +99,37 @@ In the `package.json`, lets add nother command under `scripts`:
 
 `"build-component": "ng build --prod --output-hashing=none"`
 
-**NOTE:** We can also, merge all these files into one, and for that, we need to write another script.
+## Merge Output JS files into one
+If you want, you can merge all the output files into one to save the HTTP hits and be not bothered about copying multiples JS files while using these web components.
+
+Create a js file and call it `build-bundle.js` in the root directory of the setup (on exact location where you have your `package.json`.
+
+And using some file system npm packages, we will merge all js files into one. Paste the below code into the JS file:
+
+```js
+const fs = require('fs-extra');
+const concat = require('concat');
+
+(async function build(){
+    const files = [
+        './dist/web-components/runtime-es2015.js',
+        './dist/web-components/runtime-es5.js',
+        './dist/web-components/polyfills-es5.js',
+        './dist/web-components/polyfills-es2015.js',
+        './dist/web-components/main-es2015.js',
+        './dist/web-components/main-es5.js'
+    ];
+
+    await fs.ensureDir('web-components');
+    await concat(files, 'dist/web-components/ng-elements.js');
+})();
+```
+
+Now lets add this to npm build process. so, open package.json and change the build script to below:
+
+`"build-component": "ng build --prod --output-hashing=none && node build-bundle.js"`
+
+And after that, when you build your code, it will make one JS file with name `ng-elements.js` under `dist` folder which you can use to import angular web components.
 
 ## Output
 Checkout [/dist/web-components/index.html](/dist/web-components/index.html) directory for output

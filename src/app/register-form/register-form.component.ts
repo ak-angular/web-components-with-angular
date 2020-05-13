@@ -1,9 +1,11 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  // encapsulation: ViewEncapsulation.ShadowDom
 })
 export class RegisterFormComponent implements OnInit {
 
