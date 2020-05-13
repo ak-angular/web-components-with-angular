@@ -1,7 +1,11 @@
 # SETUP: Web Components in Angular
 This document is written based on Angular 9, if there is any change in further versions, please check the documentations.
 
-## Add Angular Elements Package
+### Create your basic Angular app
+create a basic angular app using `ng` cli command. 
+Open terminal and run: `ng new app-name` and do the standar procedure to set it up.
+
+### Add Angular Elements Package
 This step will enable your angular setup to make angular components
 
 ```shell
@@ -13,7 +17,7 @@ And then we would require to import the module to `app.module.ts`. Lets do it li
 import { createCustomElement } from '@angular/elements';
 ```
 
-## App Module - Remove App Based Config
+### App Module - Remove App Based Config
 Since plan is to build web components, not to have an angular app, lets remove the app related configurations in entry file.
 
 
@@ -25,7 +29,7 @@ Since plan is to build web components, not to have an angular app, lets remove t
 * Also, we do not need to bootstrap the app, so remove below line under `@ngModule`:
 	`bootstrap: [AppComponent]`
 
-## Remove app.component files
+### Remove app.component files
 Since we do not need the app component files (and we deleted the refernce of it in app.modile.ts), lets remove them from the project directory. So delete below files:
 
 * app.component.html
@@ -34,7 +38,7 @@ Since we do not need the app component files (and we deleted the refernce of it 
 * app.component.specs.ts
 
 
-## Export Web Components for outer world
+### Export Web Components for outer world
 Time to make our custom web components and expose them for outer world. So, in `app.module.ts`, lets change `AppModule` class as below:
 
 ```js
@@ -99,7 +103,7 @@ In the `package.json`, lets add nother command under `scripts`:
 
 `"build-component": "ng build --prod --output-hashing=none"`
 
-## Merge Output JS files into one
+### Merge Output JS files into one
 If you want, you can merge all the output files into one to save the HTTP hits and be not bothered about copying multiples JS files while using these web components.
 
 Create a js file and call it `build-bundle.js` in the root directory of the setup (on exact location where you have your `package.json`.
@@ -131,7 +135,7 @@ Now lets add this to npm build process. so, open package.json and change the bui
 
 And after that, when you build your code, it will make one JS file with name `ng-elements.js` under `dist` folder which you can use to import angular web components.
 
-## Output
+### Output
 Checkout [/dist/web-components/index.html](/dist/web-components/index.html) directory for output
 
 
@@ -139,31 +143,20 @@ Checkout [/dist/web-components/index.html](/dist/web-components/index.html) dire
 ---
 
 
-# Angular Base Build Info
+## Angular Base Build Info
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
+### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
