@@ -1,5 +1,7 @@
-# SETUP: Web Components in Angular
+# Web Components in Angular
 This document is written based on Angular 9, if there is any change in further versions, please check the documentations.
+
+## Setup
 
 ### Create your basic Angular app
 create a basic angular app using `ng` cli command. 
