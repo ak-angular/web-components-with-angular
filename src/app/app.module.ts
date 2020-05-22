@@ -36,8 +36,8 @@ export class AppModule {
       // Convert component to a custom element.
       const el = createCustomElement(component, {injector: this.injector});
 
-      // Register the custom element with the browser
-      customElements.define(name, el);
+      // Register the custom element with the browser if does not exist
+      customElements.get(name) || customElements.define(name, el);
     }
     
   }
